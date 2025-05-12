@@ -1,4 +1,6 @@
+import React from "react";
 import type { Metadata } from "next";
+import ToasterClient from "@/components/toast/ToasterClient";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -27,6 +29,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <ToasterClient />
         {children}
       </body>
     </html>
