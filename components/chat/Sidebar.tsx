@@ -26,7 +26,7 @@ const DUMMY_ITEMS = [
   },
 ];
 
-export async function Sidebar() {
+export function Sidebar() {
   return (
     <nav className="h-full p-3 bg-black flex flex-col text-white">
       {/* 로고 영역 + 메뉴 아이템 */}
