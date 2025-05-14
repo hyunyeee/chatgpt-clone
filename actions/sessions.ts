@@ -20,6 +20,11 @@ export const encrypt = async (payload: SessionPayload) => {
 };
 
 export const verify = async (session: string | undefined = "") => {
+  if (!session) {
+    console.warn("verify 함수: 세션이 비어 있습니다.");
+    return null;
+  }
+
   try {
     const { payload } = await jwtVerify<SessionPayload>(session, encodedKey, {
       algorithms: ["HS256"],

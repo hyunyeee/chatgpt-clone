@@ -7,10 +7,18 @@ import { verify } from "@/actions/sessions";
 // This function can be marked `async` if using `await` inside
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
-
   const isPublicRoute = PUBLIC_ROUTES.includes(pathname);
 
   const cookie = (await cookies()).get("session")?.value;
+
+  // 로그아웃 시점에 쿠키가 존재하지 않을 경우
+  if (!cookie) {
+    if (!isPublicRoute) {
+      return NextResponse.redirect(new URL(AUTH_ROUTES.LOGIN, request.nextUrl));
+    }
+    return NextResponse.next();
+  }
+
   const session = await verify(cookie);
 
   if (!isPublicRoute && !session) {
