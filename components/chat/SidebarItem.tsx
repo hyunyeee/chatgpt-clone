@@ -15,9 +15,9 @@ import { useSheetStore } from "@/store/sheet";
 type Props = {
   item: {
     id: string;
-    href: string;
-    icon: ReactNode;
     label: string;
+    icon: ReactNode;
+    href: string;
   };
 };
 
